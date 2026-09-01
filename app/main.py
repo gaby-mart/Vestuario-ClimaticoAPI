@@ -1,4 +1,5 @@
-from fastapi import FastAPI, uvicorn
+from fastapi import FastAPI
+import uvicorn
 import os
 from app.api.v1.clima import router as clima_router
 from app.db.database import engine, Base
