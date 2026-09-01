@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, uvicorn
+import os
 from app.api.v1.clima import router as clima_router
 from app.db.database import engine, Base
 from app.api.v1.users import router as users_router
@@ -19,3 +20,7 @@ app.include_router(auth_router)
 @app.get("/", tags=["Healthcheck"])
 def root():
     return {"status": "API online", "documentacao": "/docs"}
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000)) 
+    uvicorn.run("app.main:app", host="0.0.0.0", port=port)
